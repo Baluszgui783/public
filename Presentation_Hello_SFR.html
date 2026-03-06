@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello SFR · Pitch Deck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #e9ecef;
+            color: #181818;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slide {
+            width: 960px;
+            height: 540px;
+            position: relative;
+            margin: 20px auto;
+            background: #ffffff;
+            display: none;
+            flex-direction: column;
+            padding: 40px 56px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 32px;
+            right: 40px; 
+            width: 44px;
+            height: 44px;
+            background: #D90D25;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(217, 13, 37, 0.3);
+            z-index: 10;
+        }
+
+        .slide-header {
+            margin-bottom: 24px;
+            padding-right: 60px;
+        }
+
+        .slide-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: 20pt;
+            color: #181818;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .slide-subtitle {
+            font-weight: 400;
+            font-size: 14pt;
+            color: #D90D25;
+            line-height: 1.3;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 56px;
+            font-size: 9pt;
+            color: #888;
+            font-weight: 400;
+            z-index: 10;
+        }
+
+        /* Slide 1 - Title */
+        .title-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #FFF0F0 100%);
+        }
+
+        .title-slide .main-title {
+            font-size: 64pt;
+            font-weight: 900;
+            color: #D90D25;
+            margin-bottom: 16px;
+            letter-spacing: -1.5px;
+        }
+
+        .title-slide .main-subtitle {
+            font-size: 20pt;
+            font-weight: 600;
+            color: #181818;
+            max-width: 700px;
+            line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        .title-slide .footer-info {
+            font-size: 12pt;
+            font-weight: 400;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Logo styles */
+        .title-logo {
+            position: absolute;
+            bottom: 32px;
+            right: 40px;
+            width: 160px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            mix-blend-mode: multiply;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: bottom right;
+            cursor: pointer;
+        }
+
+        .title-logo:hover {
+            transform: scale(1.6);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+            mix-blend-mode: normal;
+        }
+
+        /* Video Demo Slide Styles */
+        .video-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .demo-overlay {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(217, 13, 37, 0.9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 10pt;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 5;
+        }
+
+        /* Content styles */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .bullet-list {
+            list-style: none;
+            font-size: 14pt;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .bullet-list li {
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .bullet-list li::before {
+            content: "■";
+            color: #D90D25;
+            font-size: 12pt;
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .impact-box {
+            background: #FFF0F0;
+            border-left: 6px solid #D90D25;
+            padding: 16px 24px;
+            margin-top: 24px;
+            border-radius: 4px;
+            font-size: 15pt;
+            font-weight: 600;
+            color: #D90D25;
+            text-align: center;
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 11pt;
+        }
+
+        table th {
+            background: #D90D25;
+            color: #ffffff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: middle;
+        }
+
+        table tr:nth-child(even) {
+            background: #F8F9FA;
+        }
+
+        /* Architecture diagram */
+        .architecture {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px 0;
+            gap: 8px;
+        }
+
+        .arch-block {
+            flex: 1;
+            text-align: center;
+            padding: 12px 8px;
+            background: #ffffff;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .arch-block:hover {
+            transform: translateY(-2px);
+            border-color: #D90D25;
+        }
+
+        .arch-block .icon {
+            font-size: 24pt;
+            margin-bottom: 4px;
+        }
+
+        .arch-block .label {
+            font-size: 11pt;
+            font-weight: 700;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .arch-block .sublabel {
+            font-size: 8pt;
+            color: #666;
+            line-height: 1.1;
+        }
+
+        .arrow {
+            color: #D90D25;
+            font-size: 18pt;
+            font-weight: 900;
+        }
+
+        .note {
+            font-size: 10pt;
+            font-style: italic;
+            color: #666;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        /* Two columns layout */
+        .two-columns {
+            display: flex;
+            gap: 24px;
+            margin-top: 12px;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        .domain-table {
+            font-size: 10pt;
+        }
+
+        .domain-table td {
+            padding: 8px;
+            border: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        .emotion-list {
+            list-style: none;
+        }
+
+        .emotion-list li {
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+        }
+
+        .emotion-list li.high-risk {
+            background: #FFF0F0;
+            border-left: 4px solid #D90D25;
+        }
+
+        .emotion-list li.medium-risk {
+            background: #FFF8E1;
+            border-left: 4px solid #FFC107;
+        }
+
+        .emotion-name {
+            font-weight: 700;
+            font-size: 11pt;
+            color: #181818;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .emotion-quote {
+            font-style: italic;
+            font-size: 9.5pt;
+            color: #444;
+            margin-top: 2px;
+        }
+
+        .emotion-risk {
+            font-size: 9pt;
+            font-weight: 600;
+            color: #D90D25;
+        }
+
+        /* Verbatim box */
+        .verbatim-box {
+            background: #F8F9FA;
+            border-left: 4px solid #181818;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            font-size: 13pt;
+            font-style: italic;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .result-table {
+            font-size: 11pt;
+        }
+
+        .result-table td:first-child {
+            font-weight: 700;
+            width: 30%;
+            background: #fdfdfd;
+        }
+
+        .highlight-red {
+            color: #D90D25;
+            font-weight: 800;
+            font-size: 13pt;
+        }
+
+        .alert-badge {
+            background: #D90D25;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 10pt;
+            display: inline-block;
+        }
+
+        /* Dashboard grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .dashboard-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dashboard-item .item-icon {
+            font-size: 20pt;
+            margin-bottom: 8px;
+        }
+
+        .dashboard-item .item-title {
+            font-weight: 700;
+            font-size: 11pt;
+            margin-bottom: 4px;
+            color: #D90D25;
+        }
+
+        .dashboard-item .item-desc {
+            font-size: 9.5pt;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 16px 0 24px 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 16px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: #ffc8c8;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            text-align: center;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-dot {
+            width: 32px;
+            height: 32px;
+            background: #D90D25;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            border: 4px solid #fff;
+            box-shadow: 0 0 0 1px #D90D25;
+        }
+
+        .timeline-month {
+            font-weight: 800;
+            font-size: 10pt;
+            color: #D90D25;
+            margin-bottom: 4px;
+        }
+
+        .timeline-label {
+            font-weight: 700;
+            font-size: 10pt;
+            margin-bottom: 2px;
+        }
+
+        .timeline-desc {
+            font-size: 8.5pt;
+            color: #666;
+            line-height: 1.3;
+        }
+
+        /* CTA */
+        .key-messages {
+            margin: 16px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .key-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .check-icon {
+            color: #16A34A;
+            font-size: 20pt;
+            margin-bottom: 8px;
+        }
+
+        .message-content .message-title {
+            font-weight: 700;
+            font-size: 11pt;
+            color: #181818;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .message-content .message-text {
+            font-size: 9.5pt;
+            color: #666;
+        }
+
+        .cta-box {
+            background: #181818;
+            color: #ffffff;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .cta-box .cta-title {
+            font-weight: 700;
+            font-size: 14pt;
+            margin-bottom: 4px;
+            color: #D90D25;
+        }
+
+        .cta-box .cta-text {
+            font-size: 11pt;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 10pt;
+            color: #555;
+        }
+
+        /* Thank you slide */
+        .thank-you-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .thank-you-slide .thank-title {
+            font-size: 56pt;
+            font-weight: 900;
+            color: #D90D25;
+            margin-bottom: 16px;
+        }
+
+        .thank-you-slide .thank-subtitle {
+            font-size: 20pt;
+            font-weight: 400;
+            color: #181818;
+        }
+
+        /* Navigation hint */
+        .nav-hint {
+            position: fixed;
+            bottom: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 400;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body>
+
+<section class="slide title-slide active">
+    <div class="main-title">Hello SFR</div>
+    <div class="main-subtitle">Transformer chaque verbatim client en décision business grâce à l'IA</div>
+    <div class="footer-info">
+        <strong><span class="date-du-jour"></span></strong><br>
+        Direction Expérience Client<br>
+        Christopher Guerrier · Chef de projet Hello SFR
+    </div>
+    <img src="https://raw.githubusercontent.com/Baluszgui783/public/90b9dcfbd5c74a76bd6b3f3939673ba4f87ba555/25c440fd057032032a537438be9feb50a3278fd771e279929be30cdd.jpg" alt="Logo Hello SFR Python" class="title-logo">
+</section>
+
+<section class="slide">
+    <div class="slide-number">01</div>
+    <div class="slide-header">
+        <div class="slide-title">Des milliers de verbatims... et si peu d'actions</div>
+        <div class="slide-subtitle">La douleur actuelle</div>
+    </div>
+    <div class="content">
+        <ul class="bullet-list">
+            <li>Chaque enquête de satisfaction génère des centaines de verbatims libres</li>
+            <li>Aujourd'hui : lecture manuelle, partielle, sans priorisation</li>
+            <li>Résultat : les signaux faibles de churn passent inaperçus</li>
+            <li>Un client insatisfait non rappelé à temps, c'est un contrat qui part</li>
+        </ul>
+        <div class="impact-box">
+            "Un verbatim négatif non traité coûte en moyenne X fois plus cher qu'une action préventive"
+        </div>
+    </div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
+</section>
+
+<section class="slide">
+    <div class="slide-number">02</div>
+    <div class="slide-header">
+        <div class="slide-title">Hello SFR : le radar churn de SFR B2B</div>
+        <div class="slide-subtitle">4 fonctions clés</div>
+    </div>
+    <div class="content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Ce qu'il fait</th>
+                    <th>Comment ça marche</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>🧠 Comprend chaque verbatim</strong></td>
+                    <td>IA Gemini · Classification sémantique avancée</td>
+                </tr>
+                <tr>
+                    <td><strong>🎯 Détecte l'émotion dominante</strong></td>
+                    <td>30 émotions finement calibrées pour SFR B2B</td>
+                </tr>
+                <tr>
+                    <td><strong>🚨 Score le risque de churn (0-10)</strong></td>
+                    <td>5 niveaux · De l'agacement léger à la rupture immédiate</td>
+                </tr>
+                <tr>
+                    <td><strong>📊 Priorise les actions de rappel</strong></td>
+                    <td>Urgency score algorithmique · Alertes automatiques aux équipes</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
+</section>
+
+<section class="slide">
+    <div class="slide-number">03</div>
+    <div class="slide-header">
+        <div class="slide-title">Un pipeline IA 100% automatique et Cloud</div>
+        <div class="slide-subtitle">Architecture technique simplifiée dans GCP</div>
+    </div>
+    <div class="content">
+        <div class="architecture">
+            <div class="arch-block">
+                <div class="icon">📋</div>
+                <div class="label">Enquête</div>
+                <div class="sublabel">Export CSV</div>
+            </div>
+            <div class="arrow">→</div>
+            <div class="arch-block">
+                <div class="icon">⚙️</div>
+                <div class="label">Cloud Run</div>
+                <div class="sublabel">Ingestion ETL Python</div>
+            </div>
+            <div class="arrow">→</div>
+            <div class="arch-block">
+                <div class="icon">🧠</div>
+                <div class="label">Gemini IA</div>
+                <div class="sublabel">Analyse NLP ML</div>
+            </div>
+            <div class="arrow">→</div>
+            <div class="arch-block">
+                <div class="icon">📊</div>
+                <div class="label">BigQuery</div>
+                <div class="sublabel">Stockage structuré</div>
+            </div>
+            <div class="arrow">→</div>
+            <div class="arch-block">
+                <div class="icon">🖥️</div>
+                <div class="label">Dashboard</div>
+                <div class="sublabel">App Streamlit</div>
+            </div>
+        </div>
+        <div class="note">Architecture hébergée sur le framework GCP officiel SFR · Données souveraines · Accès strictement contrôlé</div>
+    </div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
+</section>
+
+<section class="slide">
+    <div class="slide-number">04</div>
+    <div class="slide-header">
+        <div class="slide-title">Un modèle sur-mesure : 12 domaines, 30 émotions</div>
+        <div class="slide-subtitle">La taxonomie métier SFR B2B</div>
+    </div>
+    <div class="content">
+        <div class="two-columns">
+            <div class="column">
+                <table class="domain-table">
+                    <tbody>
+                        <tr><td>⏱️ Délais & Réactivité</td><td>💰 Facturation & Contrats</td></tr>
+                        <tr><td>🔧 Technique & Réseau</td><td>📋 Actes Administratifs</td></tr>
+                        <tr><td>🔄 SAV & Résolution</td><td>📝 Expérience Globale</td></tr>
+                        <tr><td>🚀 Déploiement & Installation</td><td>💬 Communication & Clarté</td></tr>
+                        <tr><td>💬 Relation Client</td><td>📊 Enquêtes & Sollicitations</td></tr>
+                        <tr><td>📞 Joignabilité & Parcours</td><td>📍 Couverture & Géographie</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="column">
+                <div style="font-weight: 700; font-size: 11pt; margin-bottom: 12px; color: #D90D25;">Top 4 émotions prédictives de churn</div>
+                <ul class="emotion-list">
+                    <li class="high-risk">
+                        <div class="emotion-name">🔴 Désengagement <span class="emotion-risk">Risque 8.5-10</span></div>
+                        <div class="emotion-quote">"Je pars à la concurrence."</div>
+                    </li>
+                    <li class="high-risk">
+                        <div class="emotion-name">🔴 Détraction <span class="emotion-risk">Risque 8.5-10</span></div>
+                        <div class="emotion-quote">"Service catastrophique, fuyez !"</div>
+                    </li>
+                    <li class="high-risk">
+                        <div class="emotion-name">🔴 Lassitude <span class="emotion-risk">Risque 8.5-10</span></div>
+                        <div class="emotion-quote">"Encore une fois en panne, je fatigue."</div>
+                    </li>
+                    <li class="medium-risk">
+                        <div class="emotion-name">🟠 Déconsidération <span class="emotion-risk">Risque 7-8</span></div>
+                        <div class="emotion-quote">"On a l'impression de ne pas être écouté."</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
+</section>
+
+<section class="slide">
+    <div class="slide-number">05</div>
+    <div class="slide-header">
+        <div class="slide-title">Du verbatim à l'action en quelques secondes</div>
+        <div class="slide-subtitle">Exemple concret de traitement IA</div>
+    </div>
+    <div class="content">
+        <div class="verbatim-box">
+            "Cela fait 3 semaines que je relance, personne ne me répond, je commence sérieusement à regarder la concurrence."
+        </div>
+        <table class="result-table">
+            <tbody>
+                <tr>
+                    <td>🎯 Domaine ciblé</td>
+                    <td>🔄 SAV & Résolution</td>
+                </tr>
+                <tr>
+                    <td>😤 Émotion détectée</td>
+                    <td>Lassitude · Désengagement</td>
+                </tr>
+                <tr>
+                    <td>📉 Churn Risk</td>
+                    <td><span class="highlight-red">9.2 / 10</span></td>
+                </tr>
+                <tr>
+                    <td>🚨 Urgency Score</td>
+                    <td><span class="highlight-red">8.7 / 10</span> &nbsp; <span class="alert-badge">RAPPEL URGENT</span></td>
+                </tr>
+                <tr>
+                    <td>📝 Résumé IA</td>
+                    <td><em>"Client B2B épuisé par 3 semaines sans retour SAV, signal de départ imminent identifié."</em></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
+</section>
+
+<section class="slide">
+    <div class="slide-number">06</div>
+    <div class="slide-header">
+        <div class="slide-title">Un outil de pilotage, pas juste un rapport statique</div>
+        <div class="slide-subtitle">Le dashboard interactif Hello SFR</div>
+    </div>
+    <div class="content">
+        <div class="dashboard-grid">
+            <div class="dashboard-item">
+                <div class="item-icon">📊</div>
+                <div class="item-title">Vue globale (KPIs)</div>
+                <div class="item-desc">Répartition instantanée des sentiments, top domaines en tension, estimation de l'évolution du taux de churn.</div>
+            </div>
+            <div class="dashboard-item">
+                <div class="item-icon">🗺️</div>
+                <div class="item-title">Heatmap temporelle</div>
+                <div class="item-desc">Suivi de l'évolution du sentiment client par domaine métier et par mois pour isoler les crises.</div>
+            </div>
+            <div class="dashboard-item">
+                <div class="item-icon">🎭</div>
+                <div class="item-title">Cartographie des émotions</div>
+                <div class="item-desc">Treemap interactif des 30 émotions détectées, accès direct aux top verbatims associés à chaque émotion.</div>
+            </div>
+            <div class="dashboard-item">
+                <div class="item-icon">🚨</div>
+                <div class="item-title">Liste d'actions urgentes</div>
+                <div class="item-desc">File d'attente des verbatims triés par Urgency Score, prêts à être traités par les équipes rétention.</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
+</section>
+
+<section class="slide">
+    <div class="slide-number">07</div>
+    <div class="slide-header">
+        <div class="slide-title">L'outil en action</div>
+        <div class="slide-subtitle">Navigation au sein de l'application Hello SFR</div>
+    </div>
+    <div class="content" style="padding-bottom: 24px;">
+        <div class="video-container">
+            <div class="demo-overlay">Démo Live</div>
+            <iframe id="demo-video" width="100%" height="100%" 
+                src="https://www.youtube.com/embed/rsQFFbCOYyA?autoplay=1&mute=1&loop=1&playlist=rsQFFbCOYyA&controls=0&rel=0&modestbranding=1" 
+                title="Hello SFR Demo" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen 
+                style="border-radius: 8px; pointer-events: none;">
+            </iframe>
+        </div>
+    </div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
+</section>
+
+<section class="slide">
+    <div class="slide-number">08</div>
+    <div class="slide-header">
+        <div class="slide-title">Un gain de temps et d'efficacité mesurable</div>
+        <div class="slide-subtitle">Comparatif : Avant / Après Hello SFR</div>
+    </div>
+    <div class="content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Critère</th>
+                    <th>Avant (Processus manuel)</th>
+                    <th>Avec Hello SFR (IA)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Temps de traitement</strong></td>
+                    <td>2 à 3 jours de lecture et tri manuel</td>
+                    <td><strong>&lt; 24h</strong> après réception du flux de données</td>
+                </tr>
+                <tr>
+                    <td><strong>Taux de couverture</strong></td>
+                    <td>Environ 20% des verbatims exploités</td>
+                    <td><strong>100%</strong> des textes analysés automatiquement</td>
+                </tr>
+                <tr>
+                    <td><strong>Fiabilité / Priorisation</strong></td>
+                    <td>Soumise à la subjectivité du lecteur</td>
+                    <td><strong>Score algorithmique objectif</strong> (0-10)</td>
+                </tr>
+                <tr>
+                    <td><strong>Détection du Churn</strong></td>
+                    <td>Souvent détecté trop tard</td>
+                    <td><strong>Alerte pro-active</strong> en temps réel</td>
+                </tr>
+                <tr>
+                    <td><strong>Collaboration</strong></td>
+                    <td>Partage d'exports Excel par email</td>
+                    <td><strong>Dashboard unique partagé</strong>, avec filtres</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
+</section>
+
+<section class="slide">
+    <div class="slide-number">09</div>
+    <div class="slide-header">
+        <div class="slide-title">Un projet rythmé en 4 phases vers le Go-Live</div>
+        <div class="slide-subtitle">Roadmap & Ressources nécessaires</div>
+    </div>
+    <div class="content">
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-month">MARS 2026</div>
+                <div class="timeline-label">Kick-off</div>
+                <div class="timeline-desc">Cadrage<br>Validations</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-month">AVRIL 2026</div>
+                <div class="timeline-label">Backend GCP</div>
+                <div class="timeline-desc">Cloud Run +<br>BigQuery ML</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-month">MAI 2026</div>
+                <div class="timeline-label">Dashboard</div>
+                <div class="timeline-desc">Connexion BQ +<br>Auth SFR</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-month">JUIN 2026</div>
+                <div class="timeline-label">Go-Live</div>
+                <div class="timeline-desc">Ouverture &<br>Formation</div>
+            </div>
+        </div>
+        <table style="font-size: 9.5pt; margin-top: 0;">
+            <thead>
+                <tr>
+                    <th>Équipe impliquée</th>
+                    <th>Ressources & Besoins requis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>DSI / Équipe GCP</strong></td>
+                    <td>Provisioning du projet GCP · Accès dataset BigQuery · Configuration Cloud Run</td>
+                </tr>
+                <tr>
+                    <td><strong>Direction CX</strong></td>
+                    <td>Validation du sponsoring · Budget API Gemini · Identification de 3 bêta-testeurs</td>
+                </tr>
+                <tr>
+                    <td><strong>Commerce / Opérations</strong></td>
+                    <td>Disponibilité (2h) pour démo intermédiaire · Retours métier sur la taxonomie</td>
+                </tr>
+                <tr>
+                    <td><strong>DPO / Juridique</strong></td>
+                    <td>1 session de cadrage RGPD (processus d'anonymisation des verbatims B2B)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
+</section>
+
+<section class="slide">
+    <div class="slide-number">10</div>
+    <div class="slide-header">
+        <div class="slide-title">Hello SFR est prêt. Lançons-le ensemble.</div>
+        <div class="slide-subtitle">Bilan et prochaines étapes</div>
+    </div>
+    <div class="content">
+        <div class="key-messages">
+            <div class="key-message">
+                <div class="check-icon">✔️</div>
+                <div class="message-content">
+                    <div class="message-title">L'outil est validé</div>
+                    <div class="message-text">Testé par nos bêta-testeurs SFR B2B ce mois-ci.</div>
+                </div>
+            </div>
+            <div class="key-message">
+                <div class="check-icon">☁️</div>
+                <div class="message-content">
+                    <div class="message-title">Architecture robuste</div>
+                    <div class="message-text">100% GCP, souveraine, sécurisée et scalable.</div>
+                </div>
+            </div>
+            <div class="key-message">
+                <div class="check-icon">📈</div>
+                <div class="message-content">
+                    <div class="message-title">ROI immédiat</div>
+                    <div class="message-text">Chaque client sauvé justifie largement l'investissement.</div>
+                </div>
+            </div>
+        </div>
+        <div class="cta-box">
+            <div class="cta-title">🗓️ COPIL de Lancement — Mi-Mars 2026</div>
+            <div class="cta-text">Ordre du jour : Validation du Project Charter · Nomination du Sponsor · Provisioning GCP</div>
+        </div>
+        <div class="contact-info">
+            <strong>Christopher Guerrier</strong> — christopher.guerrier@sfr.com<br>
+            SFR B2B — Direction Expérience Client
+        </div>
+    </div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
+</section>
+
+<section class="slide thank-you-slide">
+    <div class="thank-title">Merci !</div>
+    <div class="thank-subtitle">Place à vos questions</div>
+    <div class="slide-footer"><span class="date-du-jour"></span> · SFR B2B — Direction Expérience Client</div>
+</section>
+
+<div class="nav-hint">Flèches, Espace ou <b>Balayez l'écran</b> pour naviguer</div>
+
+<script>
+    // --- NOUVEAU : Date dynamique en français ---
+    const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let dateAujourdhui = new Date().toLocaleDateString('fr-FR', optionsDate);
+    
+    // Mettre la première lettre en majuscule
+    dateAujourdhui = dateAujourdhui.charAt(0).toUpperCase() + dateAujourdhui.slice(1);
+    
+    // Remplacer le texte partout où il y a la classe .date-du-jour
+    document.querySelectorAll('.date-du-jour').forEach(element => {
+        element.textContent = dateAujourdhui;
+    });
+
+    // --- Navigation ---
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function showSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (n + totalSlides) % totalSlides;
+        slides[currentSlide].classList.add('active');
+        
+        // Relancer l'iframe YouTube pour garantir l'autoplay quand on arrive sur la slide
+        const iframe = slides[currentSlide].querySelector('iframe');
+        if (iframe && iframe.src.includes('youtube')) {
+            let currentSrc = iframe.src;
+            iframe.src = currentSrc;
+        }
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    // Navigation clavier
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevSlide();
+        }
+    });
+
+    // Navigation tactile (Swipes)
+    let touchstartX = 0;
+    let touchendX = 0;
+
+    function handleGesture() {
+        if (touchendX < touchstartX - 50) nextSlide(); // Swipe gauche
+        if (touchendX > touchstartX + 50) prevSlide(); // Swipe droit
+    }
+
+    document.addEventListener('touchstart', e => {
+        touchstartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', e => {
+        touchendX = e.changedTouches[0].screenX;
+        handleGesture();
+    });
+
+    // Cacher l'indice de navigation
+    setTimeout(() => {
+        const hint = document.querySelector('.nav-hint');
+        if(hint) {
+            hint.style.opacity = '0';
+            hint.style.transition = 'opacity 1s';
+            setTimeout(() => hint.remove(), 1000);
+        }
+    }, 5000);
+</script>
+
+</body>
+</html>
