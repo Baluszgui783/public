@@ -59,6 +59,7 @@
             font-weight: 700;
             font-size: 16px;
             box-shadow: 0 4px 8px rgba(217, 13, 37, 0.3);
+            z-index: 10;
         }
 
         .slide-header {
@@ -89,6 +90,7 @@
             font-size: 9pt;
             color: #888;
             font-weight: 400;
+            z-index: 10;
         }
 
         /* Slide 1 - Title */
@@ -123,7 +125,7 @@
             line-height: 1.6;
         }
 
-        /* Logo styles avec effet de survol */
+        /* Logo styles */
         .title-logo {
             position: absolute;
             bottom: 32px;
@@ -142,6 +144,36 @@
             transform: scale(1.6);
             box-shadow: 0 12px 32px rgba(0,0,0,0.2);
             mix-blend-mode: normal;
+        }
+
+        /* Video Demo Slide Styles */
+        .video-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .demo-overlay {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(217, 13, 37, 0.9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 10pt;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 5;
         }
 
         /* Content styles */
@@ -568,7 +600,7 @@
     <div class="main-title">Hello SFR</div>
     <div class="main-subtitle">Transformer chaque verbatim client en décision business grâce à l'IA</div>
     <div class="footer-info">
-        <strong>Vendredi 6 mars 2026</strong><br>
+        <strong><span class="date-du-jour"></span></strong><br>
         Direction Expérience Client<br>
         Christopher Guerrier · Chef de projet Hello SFR
     </div>
@@ -592,7 +624,7 @@
             "Un verbatim négatif non traité coûte en moyenne X fois plus cher qu'une action préventive"
         </div>
     </div>
-    <div class="slide-footer">Vendredi 6 mars 2026</div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
 </section>
 
 <section class="slide">
@@ -629,7 +661,7 @@
             </tbody>
         </table>
     </div>
-    <div class="slide-footer">Vendredi 6 mars 2026</div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
 </section>
 
 <section class="slide">
@@ -672,7 +704,7 @@
         </div>
         <div class="note">Architecture hébergée sur le framework GCP officiel SFR · Données souveraines · Accès strictement contrôlé</div>
     </div>
-    <div class="slide-footer">Vendredi 6 mars 2026</div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
 </section>
 
 <section class="slide">
@@ -718,7 +750,7 @@
             </div>
         </div>
     </div>
-    <div class="slide-footer">Vendredi 6 mars 2026</div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
 </section>
 
 <section class="slide">
@@ -756,7 +788,7 @@
             </tbody>
         </table>
     </div>
-    <div class="slide-footer">Vendredi 6 mars 2026</div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
 </section>
 
 <section class="slide">
@@ -788,13 +820,34 @@
                 <div class="item-desc">File d'attente des verbatims triés par Urgency Score, prêts à être traités par les équipes rétention.</div>
             </div>
         </div>
-        <div class="note">💡 Une démonstration live de l'interface est disponible sur demande.</div>
     </div>
-    <div class="slide-footer">Vendredi 6 mars 2026</div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
 </section>
 
 <section class="slide">
     <div class="slide-number">07</div>
+    <div class="slide-header">
+        <div class="slide-title">L'outil en action</div>
+        <div class="slide-subtitle">Navigation au sein de l'application Hello SFR</div>
+    </div>
+    <div class="content" style="padding-bottom: 24px;">
+        <div class="video-container">
+            <div class="demo-overlay">Démo Live</div>
+            <iframe id="demo-video" width="100%" height="100%" 
+                src="https://www.youtube.com/embed/rsQFFbCOYyA?autoplay=1&mute=1&loop=1&playlist=rsQFFbCOYyA&controls=0&rel=0&modestbranding=1" 
+                title="Hello SFR Demo" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen 
+                style="border-radius: 8px; pointer-events: none;">
+            </iframe>
+        </div>
+    </div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
+</section>
+
+<section class="slide">
+    <div class="slide-number">08</div>
     <div class="slide-header">
         <div class="slide-title">Un gain de temps et d'efficacité mesurable</div>
         <div class="slide-subtitle">Comparatif : Avant / Après Hello SFR</div>
@@ -837,11 +890,11 @@
             </tbody>
         </table>
     </div>
-    <div class="slide-footer">Vendredi 6 mars 2026</div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
 </section>
 
 <section class="slide">
-    <div class="slide-number">08</div>
+    <div class="slide-number">09</div>
     <div class="slide-header">
         <div class="slide-title">Un projet rythmé en 4 phases vers le Go-Live</div>
         <div class="slide-subtitle">Roadmap & Ressources nécessaires</div>
@@ -900,11 +953,11 @@
             </tbody>
         </table>
     </div>
-    <div class="slide-footer">Vendredi 6 mars 2026</div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
 </section>
 
 <section class="slide">
-    <div class="slide-number">09</div>
+    <div class="slide-number">10</div>
     <div class="slide-header">
         <div class="slide-title">Hello SFR est prêt. Lançons-le ensemble.</div>
         <div class="slide-subtitle">Bilan et prochaines étapes</div>
@@ -942,18 +995,31 @@
             SFR B2B — Direction Expérience Client
         </div>
     </div>
-    <div class="slide-footer">Vendredi 6 mars 2026</div>
+    <div class="slide-footer"><span class="date-du-jour"></span></div>
 </section>
 
 <section class="slide thank-you-slide">
     <div class="thank-title">Merci !</div>
     <div class="thank-subtitle">Place à vos questions</div>
-    <div class="slide-footer">Vendredi 6 mars 2026 · SFR B2B — Direction Expérience Client</div>
+    <div class="slide-footer"><span class="date-du-jour"></span> · SFR B2B — Direction Expérience Client</div>
 </section>
 
 <div class="nav-hint">Flèches, Espace ou <b>Balayez l'écran</b> pour naviguer</div>
 
 <script>
+    // --- NOUVEAU : Date dynamique en français ---
+    const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let dateAujourdhui = new Date().toLocaleDateString('fr-FR', optionsDate);
+    
+    // Mettre la première lettre en majuscule
+    dateAujourdhui = dateAujourdhui.charAt(0).toUpperCase() + dateAujourdhui.slice(1);
+    
+    // Remplacer le texte partout où il y a la classe .date-du-jour
+    document.querySelectorAll('.date-du-jour').forEach(element => {
+        element.textContent = dateAujourdhui;
+    });
+
+    // --- Navigation ---
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
@@ -962,6 +1028,13 @@
         slides[currentSlide].classList.remove('active');
         currentSlide = (n + totalSlides) % totalSlides;
         slides[currentSlide].classList.add('active');
+        
+        // Relancer l'iframe YouTube pour garantir l'autoplay quand on arrive sur la slide
+        const iframe = slides[currentSlide].querySelector('iframe');
+        if (iframe && iframe.src.includes('youtube')) {
+            let currentSrc = iframe.src;
+            iframe.src = currentSrc;
+        }
     }
 
     function nextSlide() {
@@ -983,12 +1056,11 @@
         }
     });
 
-    // --- NOUVEAU : Navigation tactile (Swipes) ---
+    // Navigation tactile (Swipes)
     let touchstartX = 0;
     let touchendX = 0;
 
     function handleGesture() {
-        // Marge de 50 pixels pour éviter les faux positifs lors de simples clics
         if (touchendX < touchstartX - 50) nextSlide(); // Swipe gauche
         if (touchendX > touchstartX + 50) prevSlide(); // Swipe droit
     }
@@ -1001,9 +1073,8 @@
         touchendX = e.changedTouches[0].screenX;
         handleGesture();
     });
-    // ---------------------------------------------
 
-    // Hide navigation hint after 5 seconds
+    // Cacher l'indice de navigation
     setTimeout(() => {
         const hint = document.querySelector('.nav-hint');
         if(hint) {
